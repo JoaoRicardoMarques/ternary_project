@@ -1,0 +1,226 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+\usepackage{listings}
+\usepackage{graphicx,url}
+\usepackage{amsmath}
+%\usepackage[brazil]{babel}   
+\usepackage[utf8]{inputenc}  
+
+     
+\sloppy
+
+\title{Análise da Lógica Ternária e Eficiência Computacional}
+
+\author{João Ricardo Pereira Marques\inst{1} }
+
+
+\address{Bacharelado em Ciência da Computação - Universidade Tecnológica Federal do Paraná\\
+  Campus Campo Mourão - Campo Mourão - Paraná - Brasil
+  \email{joaoricardomarques@alunos.utfpr.edu.br}
+}
+
+\begin{document} 
+\maketitle
+\begin{abstract}
+	teste
+\end{abstract}
+\begin{resumo}
+	teste
+\end{resumo}
+
+\section{Introdução}
+A computação ternária é uma alternativa direta ao modelo binário, limitado a apenas 0 e 1, enquanto o sistema ternário conta com três estados ("0,1,2"ou "-1,0,1") assim sento matematicamente mais eficiente na codificação de informação em um único \textbf{trit}
+\section{Fundamentação}
+\subsection{Conversão de ternário para decimal}
+
+\begin{equation}
+	N_{10} = (d_n \cdot 3^n)+(d_{n-1} \cdot 3^{n-1})+....+(d_1 \cdot 3^1)+(d_0 \cdot 3^0)
+\end{equation}
+
+\subsection{Conversão de decimal para ternário}
+\begin{equation}
+	\begin{split}
+		N   &= 3 \cdot q_0 + r_0 \\
+		q_0 &= 3 \cdot q_1 + r_1 \\
+		q_1 &= 3 \cdot q_2 + r_2 \\
+		&\vdots \\
+		q_{n-1} &= 3 \cdot q_n + r_n
+	\end{split}
+\end{equation}
+\section{Operações lógicas e aritméticas}
+\subsection{NOT}
+\centering
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{A} & PNOT \textbf{A}& SNOT \textbf{A}& NNOT \textbf{A}\\\hline
+	0&2&2&2\\\hline
+	1&2&1&0\\\hline
+	2&0&0&0\\\hline
+\end{tabular}
+\subsection{AND}
+\centering
+\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{A} & \textbf{B} & \textbf{A} AND \textbf{B}\\\hline
+	0&0&0\\\hline
+	0&1&0\\\hline
+	0&2&0\\\hline
+	1&0&0\\\hline
+	1&1&1\\\hline
+	1&2&1\\\hline
+	2&0&0\\\hline
+	2&1&1\\\hline
+	2&2&2\\\hline
+\end{tabular}
+\subsection{OR}
+\centering
+\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{A} & \textbf{B} & \textbf{A} OR \textbf{B}\\\hline
+	0&0&0\\\hline
+	0&1&1\\\hline
+	0&2&2\\\hline
+	1&0&1\\\hline
+	1&1&1\\\hline
+	1&2&2\\\hline
+	2&0&2\\\hline
+	2&1&2\\\hline
+	2&2&2\\\hline
+\end{tabular}
+\subsection{XOR}
+\centering
+\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{A} & \textbf{B} & \textbf{A} XOR \textbf{B}\\\hline
+	0&0&0\\\hline
+	0&1&1\\\hline
+	0&2&2\\\hline
+	1&0&1\\\hline
+	1&1&0\\\hline
+	1&2&1\\\hline
+	2&0&2\\\hline
+	2&1&1\\\hline
+	2&2&0\\\hline
+\end{tabular}
+\subsection{XNOR}
+\centering
+\begin{tabular}{|c|c|c|}
+	\hline
+	\textbf{A} & \textbf{B} & \textbf{A} XNOR \textbf{B}\\\hline
+	0&0&2\\\hline
+	0&1&1\\\hline
+	0&2&0\\\hline
+	1&0&1\\\hline
+	1&1&2\\\hline
+	1&2&1\\\hline
+	2&0&0\\\hline
+	2&1&1\\\hline
+	2&2&2\\\hline
+\end{tabular}
+\subsection{Soma}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	recebe-um&\textbf{A} & \textbf{B} & \textbf{A} + \textbf{B} & vai-um\\\hline
+	0&0&0&0&0\\\hline
+	0&0&1&1&0\\\hline
+	0&0&2&2&0\\\hline
+	0&1&0&1&0\\\hline
+	0&1&1&2&0\\\hline
+	0&1&2&0&1\\\hline
+	0&2&0&2&0\\\hline
+	0&2&1&0&1\\\hline
+	0&2&2&1&1\\\hline
+	1&0&0&1&0\\\hline
+	1&0&1&2&0\\\hline
+	1&0&2&0&1\\\hline
+	1&1&0&2&0\\\hline
+	1&1&1&0&1\\\hline
+	1&1&2&1&1\\\hline
+	1&2&0&0&1\\\hline
+	1&2&1&1&1\\\hline
+	1&2&2&2&1\\\hline
+\end{tabular}
+\subsection{Subtração}
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	empresta-um & \textbf{A} & \textbf{B} & \textbf{A} - \textbf{B}& empresta-um \\\hline
+	0 & 0 & 0 & 0 & 0 \\\hline
+	0 & 0 & 1 & 2 & 1 \\\hline
+	0 & 0 & 2 & 1 & 1 \\\hline
+	0 & 1 & 0 & 1 & 0 \\\hline
+	0 & 1 & 1 & 0 & 0 \\\hline
+	0 & 1 & 2 & 2 & 1 \\\hline
+	0 & 2 & 0 & 2 & 0 \\\hline
+	0 & 2 & 1 & 1 & 0 \\\hline
+	0 & 2 & 2 & 0 & 0 \\\hline
+	1 & 0 & 0 & 2 & 1 \\\hline
+	1 & 0 & 1 & 1 & 1 \\\hline
+	1 & 0 & 2 & 0 & 1 \\\hline
+	1 & 1 & 0 & 0 & 0 \\\hline
+	1 & 1 & 1 & 2 & 1 \\\hline
+	1 & 1 & 2 & 1 & 1 \\\hline
+	1 & 2 & 0 & 1 & 0 \\\hline
+	1 & 2 & 1 & 0 & 0 \\\hline
+	1 & 2 & 2 & 2 & 1 \\\hline
+\end{tabular}
+\subsection{Multiplicação}
+
+\subsection{Divisão}
+
+\section{Implementação de Portas}
+\subsection{Gatilho de Schmitt}
+
+\subsection{Porta SNOT}
+
+\subsection{Porta PNOT}
+
+\subsection{Porta NNOT}
+
+\subsection{Porta AND}
+
+\subsection{Porta OR}
+
+\subsection{Porta SNAND}
+
+\subsection{Porta PNAND}
+
+\subsection{Porta NNAND}
+
+\subsection{Porta SNOR}
+
+\subsection{Porta PNOR}
+
+\subsection{Porta NNOR}
+
+\section{Implementação de Circuito }
+
+\subsection{Somador}
+
+\subsection{Subtrator}
+
+\subsection{Multiplicador}
+
+\subsection{Divisor}
+
+\subsection{Comparador}
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}

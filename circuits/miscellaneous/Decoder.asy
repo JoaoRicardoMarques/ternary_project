@@ -1,0 +1,24 @@
+Version 4
+SymbolType BLOCK
+LINE Normal -48 16 -48 -16
+LINE Normal -48 -16 48 -16
+LINE Normal 48 16 -48 16
+LINE Normal 48 -16 48 16
+PIN 0 -16 NONE 8
+PINATTR PinName A
+PINATTR SpiceOrder 1
+PIN -32 16 NONE 8
+PINATTR PinName A2
+PINATTR SpiceOrder 2
+PIN 0 16 NONE 8
+PINATTR PinName A1
+PINATTR SpiceOrder 3
+PIN 32 16 NONE 8
+PINATTR PinName A0
+PINATTR SpiceOrder 4
+PIN -48 0 NONE 8
+PINATTR PinName Vin
+PINATTR SpiceOrder 5
+PIN 48 0 NONE 8
+PINATTR PinName Vout
+PINATTR SpiceOrder 6

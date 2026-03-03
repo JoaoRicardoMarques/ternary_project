@@ -115,6 +115,10 @@ A porta NAND ternária opera processando dois sinais de entrada para fornecer um
 
 
 ### AND
+<p align="justify">
+A porta AND ternária opera processando dois sinais de entrada para fornecer uma saída baseada no valor mínimo entre eles, utilizando uma estrutura composta por uma porta NAND seguida de um inversor ternário do tipo SNOT em sua saída. No primeiro estágio do circuito, os transistores PMOS e NMOS realizam a operação lógica de NAND, onde os transistores de topo garantem o nível máximo quando há entradas baixas, enquanto a rede inferior puxa o sinal para o nível mínimo apenas quando ambas as entradas são elevadas.
+O estágio final do circuito utiliza uma negação neutra SNOT (Simple NOT) conectada à saída da NAND para inverter o resultado, transformando a lógica negativa em uma função AND direta. Este inversor SNOT, composto por um par complementar de transistores e resistores em série, garante que a saída S reflita exatamente o menor valor detectado entre as entradas A e B, estabilizando o sinal nos níveis 0, 1 ou 2. Dessa forma, a corrente flui através do estágio de negação para retificar os níveis lógicos, permitindo que o circuito execute a função de mínimo necessária para a aritmética do sistema ternário.
+</p>
 <p align="center">
   <img src="Images/Circuits/AND.png" width="300">
 </p>
@@ -134,27 +138,11 @@ A porta NAND ternária opera processando dois sinais de entrada para fornecer um
 | 2  | 2  | 2  |
 </div>
 
-### OR
-<p align="center">
-  <img src="Images/Circuits/OR.png" width="300">
+### NOR
+<p align="justify">
+A porta NOR ternária implementa a inversão do valor máximo entre as duas entradas, utilizando uma configuração onde os transistores PMOS estão dispostos em série e os NMOS em paralelo. Quando ambas as entradas A e B estão no nível lógico 0, o caminho através dos transistores superiores é totalmente estabelecido, conectando a saída diretamente ao nível lógico 2. Se qualquer uma das entradas subir para o nível 2, o transistor NMOS correspondente entra em condução plena, superando a rede superior e puxando a saída para o nível lógico 0. Nos estados onde o maior valor entre as entradas é 1, o circuito atua através de um equilíbrio entre a condução parcial dos transistores e a rede de resistências internas, garantindo que a saída se estabilize no nível intermediário 1. O comportamento da corrente flui do barramento superior para o inferior com intensidades variadas conforme a combinação das entradas, permitindo que a porta execute a lógica de inversão necessária para o processamento ternário. Essa estrutura assegura que a saída seja sempre o oposto complementar do maior sinal detectado, mantendo a consistência dos níveis lógicos em todo o sistema.
 </p>
 
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 0  |
-| 0  | 1  | 1  |
-| 0  | 2  | 2  |
-| 1  | 0  | 1  |
-| 1  | 1  | 1  |
-| 1  | 2  | 2  |
-| 2  | 0  | 2  |
-| 2  | 1  | 2  |
-| 2  | 2  | 2  |
-</div>
-
-### NOR
 <p align="center">
   <img src="Images/Circuits/NOR.png" width="300">
 </p>
@@ -174,7 +162,33 @@ A porta NAND ternária opera processando dois sinais de entrada para fornecer um
 | 2  | 2  | 0  |
 </div>
 
+### OR
+<p align="justify">
+A porta OR ternária opera processando dois sinais de entrada para fornecer uma saída baseada no valor máximo entre eles, utilizando uma estrutura composta por uma porta NOR seguida de um inversor ternário do tipo SNOT em sua saída. No estágio inicial do circuito, a rede de transistores PMOS em série e NMOS em paralelo realiza a operação lógica NOR, onde a saída é conduzida para o nível máximo apenas se ambas as entradas forem baixas, sendo puxada para o nível mínimo caso qualquer entrada atinja o valor 2.
+O estágio final do circuito utiliza uma negação neutra SNOT (Simple NOT) conectada à saída da NOR para inverter o resultado, transformando a lógica negativa em uma função OR direta que retorna o valor máximo. Este inversor SNOT, equipado com seu divisor de tensão resistivo, garante que a saída S se estabilize corretamente nos níveis 0, 1 ou 2, retificando a inversão prévia para que o sinal final corresponda à união lógica das entradas A e B.
+</p>
+<p align="center">
+  <img src="Images/Circuits/OR.png" width="300">
+</p>
+
+<div align="center">
+
+| A | B | S | 
+|:--------:|:--------:|:--------:|
+| 0  | 0  | 0  |
+| 0  | 1  | 1  |
+| 0  | 2  | 2  |
+| 1  | 0  | 1  |
+| 1  | 1  | 1  |
+| 1  | 2  | 2  |
+| 2  | 0  | 2  |
+| 2  | 1  | 2  |
+| 2  | 2  | 2  |
+</div>
+
 ### XOR
+A porta XOR ternária apresentada é um circuito combinacional que processa os sinais de entrada através de três estágios lógicos distintos: uma porta NAND, uma OR e uma AND final. No primeiro nível do circuito, as entradas A e B são enviadas simultaneamente para a NAND superior e para a OR inferior, onde a NAND identifica o inverso do valor mínimo e a OR identifica o valor máximo entre as entradas.
+No estágio final, os resultados dessas duas operações são processados pela porta AND à direita, que extrai o valor mínimo entre a saída da NAND e a saída da OR para gerar o sinal final S. Esse arranjo garante que a saída atinja o nível lógico máximo apenas quando houver uma disparidade entre as entradas, mantendo a coerência dos níveis 0, 1 e 2 dentro da aritmética ternária.
 <p align="center">
   <img src="Images/Circuits/XOR.png" width="300">
 </p>
@@ -195,6 +209,8 @@ A porta NAND ternária opera processando dois sinais de entrada para fornecer um
 </div>
 
 ### XNOR
+A porta XNOR é um circuito que expande a lógica da XOR ao adicionar um estágio final de inversão para complementar o resultado. O processamento inicial ocorre através de uma porta NAND superior e uma OR inferior que recebem as entradas A e B em paralelo, seguido por uma porta AND que extrai o valor mínimo entre essas duas operações intermediárias.
+O estágio final do circuito utiliza uma negação neutra SNOT conectada à saída da porta AND para inverter o sinal resultante e gerar a saída final S. Esta negação garante que o circuito execute a função de coincidência ternária, onde a saída atinge o nível máximo (2) quando as entradas são idênticas e níveis inferiores quando há divergência entre os sinais de entrada.
 <p align="center">
   <img src="Images/Circuits/XNOR.png" width="300">
 </p>

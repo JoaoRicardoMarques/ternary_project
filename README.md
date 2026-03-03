@@ -32,6 +32,11 @@ O funcionamento do PMOS baseia-se na aplicação de uma tensão negativa no term
 
 ## Portas Lógicas
 ### PNOT
+<p align="justify">
+O circuito PNOT opera como um inversor de lógica ternária onde o transistor PMOS atua como uma chave controlada pela tensão no gate (A): quando a entrada está em nível baixo (0V), o transistor entra em condução, permitindo que a corrente flua da fonte de +2V em direção ao dreno, elevando o potencial da saída (S) para o nível alto e dissipando energia através do resistor conectado ao −2V.  Por outro lado, quando a entrada (A) recebe uma tensão alta (+2V), o transistor entra em estado de corte, interrompendo a passagem de corrente e permitindo que o resistor "puxe" a tensão de saída (S) para o nível negativo de 0V.
+</p>
+
+
 <p align="center">
   <img src="Images/Circuits/PNOT.png" width="300">
 </p>
@@ -47,6 +52,10 @@ O funcionamento do PMOS baseia-se na aplicação de uma tensão negativa no term
 </div>
 
 ### SNOT
+<p align="justify">
+No circuito SNOT, quando a entrada A é 0V, o transistor PMOS (topo) é acionado fortemente devido à diferença de potencial negativa entre o Gate e a Fonte de +2V, permitindo que a corrente flua da fonte superior para a saída S, elevando-a para 2V enquanto o NMOS permanece em corte.  Se a entrada sobe para 2V, o PMOS corta e o NMOS (base) passa a conduzir, mas como o dreno do NMOS está conectado ao divisor de tensão central, a corrente flui de modo a equilibrar a saída S em 0V, assumindo que o ponto médio do circuito esteja referenciado a esse potencial. No estado intermediário de 1V, o circuito entra em uma zona de equilíbrio onde ambos os transistores operam de forma limitada ou equilibrada pelos resistores internos, forçando a saída S a se manter em 1V através da divisão de tensão entre os barramentos de +2V e −2V, estabilizando o sinal.
+</p>
+
 <p align="center">
   <img src="Images/Circuits/SNOT.png" width="300">
 </p>
@@ -62,6 +71,10 @@ O funcionamento do PMOS baseia-se na aplicação de uma tensão negativa no term
 </div>
 
 ### NNOT
+<p align="justify">
+No circuito NNOT a saída S é determinada pelo estado de condução do transistor NMOS em relação ao divisor de tensão formado pelo resistor de carga: quando a entrada A está em 0V, o transistor permanece em corte (desligado), permitindo que o resistor de pull-up eleve o potencial da saída para +2V; no entanto, quando a entrada sobe para os níveis de 1V ou 2V, a tensão no gate torna-se positiva o suficiente para saturar o NMOS, criando um caminho de baixa impedância que puxa a corrente para o barramento inferior e estabiliza a saída S em 0V.
+</p>
+
 <p align="center">
   <img src="Images/Circuits/NNOT.png" width="300">
 </p>
@@ -75,6 +88,31 @@ O funcionamento do PMOS baseia-se na aplicação de uma tensão negativa no term
 | 2  | 0  | 
 
 </div>
+
+### NAND
+<p align="justify">
+A porta NAND ternária opera processando dois sinais de entrada para fornecer uma saída baseada na inversão do valor mínimo entre eles, utilizando uma configuração complementar de transistores para alternar entre os níveis lógicos 0, 1 e 2. No circuito, os transistores PMOS no topo funcionam como chaves que conectam a saída ao nível lógico máximo quando qualquer uma das entradas é baixa, enquanto a rede de transistores NMOS na parte inferior atua para puxar a saída para o nível lógico mínimo apenas quando ambas as entradas atingem níveis elevados. O comportamento da corrente e dos níveis de tensão é definido pela interação entre os pares de transistores: quando as entradas A ou B estão em 0, o caminho para o barramento superior é ativado, garantindo uma saída 2; se ambas as entradas sobem para o nível 2, os transistores inferiores conduzem plenamente, drenando a tensão da saída para o nível 0. Nos estados intermediários, onde pelo menos uma entrada está em 1, o circuito se equilibra para fornecer a inversão lógica correspondente, garantindo que a saída reflita sempre o estado oposto ao menor valor detectado nas entradas, mantendo a estabilidade do sinal em todo o sistema ternário.
+</p>
+
+<p align="center">
+  <img src="Images/Circuits/NAND.png" width="300">
+</p>
+
+<div align="center">
+
+| A | B | S | 
+|:--------:|:--------:|:--------:|
+| 0  | 0  | 2  |
+| 0  | 1  | 2  |
+| 0  | 2  | 2  |
+| 1  | 0  | 2  |
+| 1  | 1  | 1  |
+| 1  | 2  | 1  |
+| 2  | 0  | 2  |
+| 2  | 1  | 1  |
+| 2  | 2  | 0  |
+</div>
+
 
 ### AND
 <p align="center">
@@ -94,26 +132,6 @@ O funcionamento do PMOS baseia-se na aplicação de uma tensão negativa no term
 | 2  | 0  | 0  |
 | 2  | 1  | 1  |
 | 2  | 2  | 2  |
-</div>
-
-### NAND
-<p align="center">
-  <img src="Images/Circuits/NAND.png" width="300">
-</p>
-
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 2  |
-| 0  | 1  | 2  |
-| 0  | 2  | 2  |
-| 1  | 0  | 2  |
-| 1  | 1  | 1  |
-| 1  | 2  | 1  |
-| 2  | 0  | 2  |
-| 2  | 1  | 1  |
-| 2  | 2  | 0  |
 </div>
 
 ### OR

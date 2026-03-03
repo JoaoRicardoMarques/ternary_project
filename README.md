@@ -9,9 +9,14 @@ Este trabalho apresenta o projeto e a implementação do Ternarium, um datapath 
 A base 3, também conhecida como sistema ternário, é um sistema de numeração posicional que utiliza apenas três algarismos distintos (geralmente 0, 1 e 2) para representar qualquer valor numérico. Diferente do sistema binário (base 2) ou decimal (base 10), cada posição de um dígito em um número ternário corresponde a uma potência de 3, o que permite uma representação de dados que, em certas implementações teóricas e de hardware, oferece uma eficiência logarítmica superior à da lógica binária tradicional. A fórmula geral para converter um número de base 3 com n dígitos para a base 10 é dada pela soma ponderada: $V = \sum_{i=0}^{n-1} d_i \cdot 3^i$
 </p>
 
-
-## Base de 27
 ## Complemento de 3
+<p align="justify">
+O complemento de 3 é o análogo no sistema ternário ao que o complemento de 2 representa no sistema binário, sendo utilizado para facilitar operações de subtração e representação de números negativos em hardware. Ele é classificado como o "complemento da base", onde para um número de n algarismos, o complemento de 3 é obtido subtraindo o número original de 3n ou, de forma mais prática, somando 1 ao seu complemento de 2 ternário (o complemento de B−1). Matematicamente, se temos um número N na base 3 com n dígitos, a fórmula para o seu complemento de 3 é: $C_3(N) = 3^n - N$
+</p>
+
+$$
+210210_3 -> 012012_3 +1 -> 012020_3
+$$
 ## Componentes eletrônicos
 ### n-MOS
 <p align="justify">

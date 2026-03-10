@@ -98,22 +98,6 @@ A porta NAND ternária opera processando dois sinais de entrada para fornecer um
   <img src="Images/Circuits/NAND.png" width="300">
 </p>
 
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 2  |
-| 0  | 1  | 2  |
-| 0  | 2  | 2  |
-| 1  | 0  | 2  |
-| 1  | 1  | 1  |
-| 1  | 2  | 1  |
-| 2  | 0  | 2  |
-| 2  | 1  | 1  |
-| 2  | 2  | 0  |
-</div>
-
-
 ### AND
 <p align="justify">
 A porta AND ternária opera processando dois sinais de entrada para fornecer uma saída baseada no valor mínimo entre eles, utilizando uma estrutura composta por uma porta NAND seguida de um inversor ternário do tipo SNOT em sua saída. No primeiro estágio do circuito, os transistores PMOS e NMOS realizam a operação lógica de NAND, onde os transistores de topo garantem o nível máximo quando há entradas baixas, enquanto a rede inferior puxa o sinal para o nível mínimo apenas quando ambas as entradas são elevadas.
@@ -123,20 +107,6 @@ O estágio final do circuito utiliza uma negação neutra SNOT (Simple NOT) cone
   <img src="Images/Circuits/AND.png" width="300">
 </p>
 
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 0  |
-| 0  | 1  | 0  |
-| 0  | 2  | 0  |
-| 1  | 0  | 0  |
-| 1  | 1  | 1  |
-| 1  | 2  | 1  |
-| 2  | 0  | 0  |
-| 2  | 1  | 1  |
-| 2  | 2  | 2  |
-</div>
 
 ### NOR
 <p align="justify">
@@ -147,21 +117,6 @@ A porta NOR ternária implementa a inversão do valor máximo entre as duas entr
   <img src="Images/Circuits/NOR.png" width="300">
 </p>
 
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 2  |
-| 0  | 1  | 1  |
-| 0  | 2  | 0  |
-| 1  | 0  | 1  |
-| 1  | 1  | 1  |
-| 1  | 2  | 0  |
-| 2  | 0  | 0  |
-| 2  | 1  | 0  |
-| 2  | 2  | 0  |
-</div>
-
 ### OR
 <p align="justify">
 A porta OR ternária opera processando dois sinais de entrada para fornecer uma saída baseada no valor máximo entre eles, utilizando uma estrutura composta por uma porta NOR seguida de um inversor ternário do tipo SNOT em sua saída. No estágio inicial do circuito, a rede de transistores PMOS em série e NMOS em paralelo realiza a operação lógica NOR, onde a saída é conduzida para o nível máximo apenas se ambas as entradas forem baixas, sendo puxada para o nível mínimo caso qualquer entrada atinja o valor 2.
@@ -171,20 +126,6 @@ O estágio final do circuito utiliza uma negação neutra SNOT (Simple NOT) cone
   <img src="Images/Circuits/OR.png" width="300">
 </p>
 
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 0  |
-| 0  | 1  | 1  |
-| 0  | 2  | 2  |
-| 1  | 0  | 1  |
-| 1  | 1  | 1  |
-| 1  | 2  | 2  |
-| 2  | 0  | 2  |
-| 2  | 1  | 2  |
-| 2  | 2  | 2  |
-</div>
 
 ### XOR
 A porta XOR ternária apresentada é um circuito combinacional que processa os sinais de entrada através de três estágios lógicos distintos: uma porta NAND, uma OR e uma AND final. No primeiro nível do circuito, as entradas A e B são enviadas simultaneamente para a NAND superior e para a OR inferior, onde a NAND identifica o inverso do valor mínimo e a OR identifica o valor máximo entre as entradas.
@@ -193,20 +134,6 @@ No estágio final, os resultados dessas duas operações são processados pela p
   <img src="Images/Circuits/XOR.png" width="300">
 </p>
 
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 0  |
-| 0  | 1  | 2  |
-| 0  | 2  | 1  |
-| 1  | 0  | 2  |
-| 1  | 1  | 1  |
-| 1  | 2  | 0  |
-| 2  | 0  | 1  |
-| 2  | 1  | 0  |
-| 2  | 2  | 2  |
-</div>
 
 ### XNOR
 A porta XNOR é um circuito que expande a lógica da XOR ao adicionar um estágio final de inversão para complementar o resultado. O processamento inicial ocorre através de uma porta NAND superior e uma OR inferior que recebem as entradas A e B em paralelo, seguido por uma porta AND que extrai o valor mínimo entre essas duas operações intermediárias.
@@ -215,32 +142,69 @@ O estágio final do circuito utiliza uma negação neutra SNOT conectada à saí
   <img src="Images/Circuits/XNOR.png" width="300">
 </p>
 
-<div align="center">
-
-| A | B | S | 
-|:--------:|:--------:|:--------:|
-| 0  | 0  | 2  |
-| 0  | 1  | 0  |
-| 0  | 2  | 1  |
-| 1  | 0  | 0  |
-| 1  | 1  | 1  |
-| 1  | 2  | 2  |
-| 2  | 0  | 1  |
-| 2  | 1  | 2  |
-| 2  | 2  | 0  |
-</div>
 
 ## Algebra Ternária
 ### AND e NAND
-Durante a operação AND, a saída S sera sempre o menor dos valores dentre as entradas A e B podendo ser definida pela formula $S = min(A,B)$. Já a operação NAND baseiase na negação neutra (SNOT) da saída S da operação AND, sendo definida por $S = ¬(min(A,B))$.
+Durante a operação AND na lógica ternária, a saída S corresponde sempre ao menor valor entre as entradas A e B, podendo ser representada matematicamente pela função $S = min(A, B)$. Já a operação NAND é definida como a aplicação da negação neutra (SNOT) sobre o resultado da operação AND; dessa forma, a saída é obtida pela expressão  $S = ¬(min(A, B))$, ou seja, primeiro determina-se o menor valor entre A e B e, em seguida, aplica-se a negação neutra a esse resultado.
+<div align="center">
+
+| A | B | S | ¬S |
+|:--------:|:--------:|:--------:|:--------:|
+| 0  | 0  | 0  | 2 |
+| 0  | 1  | 0  | 2 |
+| 0  | 2  | 0  | 2 |
+| 1  | 0  | 0  | 2 |
+| 1  | 1  | 1  | 1 |
+| 1  | 2  | 1  | 1 |
+| 2  | 0  | 0  | 2 |
+| 2  | 1  | 1  | 1 |
+| 2  | 2  | 2  | 0 |
+</div>
+
 ### OR e NOR
-Diferente da operação AND, a saída S da operação OR é o maior valor das entradas A e B, definida pela formula $S = max(A,B)$.  Já a operação NOR de modo similar à NAND é a negação neutra da saída S $S = ¬(max(A,B))$.
+Diferentemente da operação AND, na operação OR da lógica ternária a saída S corresponde ao maior valor entre as entradas A e B, sendo representada pela expressão $S = max(A, B)$. De forma semelhante ao que ocorre com a operação NAND, a operação NOR é definida como a negação neutra do resultado da operação OR, podendo ser expressa por $S = ¬(max(A, B))$, ou seja, primeiro determina-se o maior valor entre A e B e, em seguida, aplica-se a negação neutra ao resultado obtido.
+<div align="center">
+
+| A | B | S | ¬S |
+|:--------:|:--------:|:--------:|:--------:|
+| 0  | 0  | 0  | 2 |
+| 0  | 1  | 1  | 1 |
+| 0  | 2  | 2  | 0 |
+| 1  | 0  | 1  | 1 |
+| 1  | 1  | 1  | 1 |
+| 1  | 2  | 2  | 0 |
+| 2  | 0  | 2  | 0 |
+| 2  | 1  | 2  | 0 |
+| 2  | 2  | 2  | 0 |
+</div>
+
 ### XOR e XNOR
+Na lógica ternária, a operação XOR (ou “ou exclusivo”) pode ser definida como aquela em que a saída S assume um valor diferente quando as entradas A e B são distintas, refletindo a diferença entre elas. De forma geral, essa operação pode ser representada pela expressão S = |A − B|, indicando que a saída corresponde ao valor absoluto da diferença entre as entradas. Já a operação XNOR corresponde ao complemento da XOR, representando a condição em que as entradas possuem o mesmo valor ou apresentam equivalência lógica; assim, sua saída pode ser definida como a negação da operação XOR, sendo expressa por S = ¬(|A − B|). Dessa forma, enquanto a XOR destaca a diferença entre as entradas, a XNOR indica sua equivalência.
+<div align="center">
+
+| A | B | S | ¬S |
+|:--------:|:--------:|:--------:|:--------:|
+| 0  | 0  | 0  | 2 |
+| 0  | 1  | 2  | 0 |
+| 0  | 2  | 1  | 1 |
+| 1  | 0  | 2  | 0 |
+| 1  | 1  | 1  | 1 |
+| 1  | 2  | 0  | 2 |
+| 2  | 0  | 1  | 1 |
+| 2  | 1  | 0  | 2 |
+| 2  | 2  | 2  | 0 |
+</div>
+
 ### Comutação
+A propriedade comutativa na lógica ternária estabelece que a ordem das entradas não altera o resultado da operação lógica. Em outras palavras, trocar as posições das variáveis A e B não modifica o valor da saída S.
 ### Associação
+A propriedade associativa na lógica ternária estabelece que o agrupamento das operações não altera o resultado final, desde que a ordem das variáveis seja mantida. Em outras palavras, ao realizar operações lógicas com três ou mais entradas, é possível agrupar os operandos de diferentes maneiras sem modificar a saída S.
 ### Distribuição
+A propriedade distributiva na lógica ternária estabelece que uma operação lógica pode ser distribuída sobre outra sem alterar o resultado final da expressão.
 ### Absorção
+A propriedade de absorção na lógica ternária estabelece que determinadas combinações entre as operações AND e OR permitem simplificar expressões lógicas sem alterar o resultado final. Essa propriedade mostra que uma variável pode “absorver” uma expressão que a contenha.
 ### Idempotência
+A propriedade de idempotência na lógica ternária estabelece que, ao aplicar uma mesma operação lógica entre duas entradas iguais, o resultado permanece igual ao valor dessas entradas.
 ## Circuitos 
 ### Decodificador
 ### Somador

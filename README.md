@@ -1,7 +1,7 @@
 # Ternarium
 ## Resumo
 <p align="justify">
-Este trabalho apresenta o projeto e a implementação do Ternarium, um datapath (caminho de dados) fundamentado em lógica ternária, explorando uma alternativa à arquitetura binária convencional. Enquanto a computação tradicional se limita a estados booleanos, a utilização de trits (unidades ternárias) permite uma maior densidade de informação e potencial redução na complexidade de interconexões. A pesquisa descreve a arquitetura da Unidade Lógica e Aritmética (ULA) ternária, integrando portas lógicas específicas como PNOT, NNOT e funções de consenso (AND/OR ternários), além da estruturação do fluxo de dados e registradores. Os resultados obtidos via simulação [mencione o software, como LTspice ou MATLAB] demonstram a viabilidade da execução de instruções em base 3, evidenciando os desafios e as vantagens da lógica multivalorada na eficiência de processamento. O projeto contribui para o campo de arquitetura de computadores ao propor uma infraestrutura funcional para sistemas não-binários, servindo de base para futuras implementações de processadores ternários completos.
+Este trabalho apresenta o projeto e a implementação do Ternarium, um datapath (caminho de dados) fundamentado em lógica ternária, explorando uma alternativa à arquitetura binária convencional. Enquanto a computação tradicional se limita a estados booleanos, a utilização de trits (unidades ternárias) permite uma maior densidade de informação e potencial redução na complexidade de interconexões. A pesquisa descreve a arquitetura da Unidade Lógica e Aritmética (ULA) ternária, integrando portas lógicas específicas como PNOT, NNOT e funções de consenso (AND/OR ternários), além da estruturação do fluxo de dados e registradores. Os resultados obtidos via simulação LTspice demonstram a viabilidade da execução de instruções em base 3, evidenciando os desafios e as vantagens da lógica multivalorada na eficiência de processamento. O projeto contribui para o campo de arquitetura de computadores ao propor uma infraestrutura funcional para sistemas não-binários, servindo de base para futuras implementações de processadores ternários completos.
 </p>
 
 ## Base 3
@@ -245,26 +245,92 @@ Diferente da operação AND, a saída S da operação OR é o maior valor das en
 ### Decodificador
 ### Somador
 #### Somador incompleto (Half-Adder)
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{sum} = A^{2}B^{0} + A^{1}B^{1}A^{0}B^{2} + 1\cdot(A^{1}B^{0} + A^{0}B^{1} + A^{2}B^{2})
 $$
+
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{carry} = 0 + 1\cdot(A^{2}B^{1} + A^{1}B^{2} + A^{2}B^{2})
 $$
+
 #### Somador completo (Full-Adder)
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{sum} = A^{2}B^{0}C^{0} + A^{1}B^{0}C^{1} + A^{0}B^{0}C^{2} + A^{1}B^{1}C^{0} + A^{0}B^{1}C^{1} + A^{2}B^{1}C^{2} + A^{0}B^{2}C^{0} + A^{2}B^{2}C^{1} + A^{1}B^{2}C^{2} + (A^{1}B^{0}C^{0} + A^{0}B^{0}C^{1} + A^{2}B^{0}C^{2} + A^{0}B^{1}C^{0} + A^{2}B^{1}C^{1} + A^{1}B^{1}C^{2} + A^{2}B^{2}C^{0} + A^{1}B^{2}C^{1} + A^{0}B^{2}C^{2})
 $$
+
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{carry} = A^{2}B^{2}C^{2} + (A^{2}C^{2} + A^{0}B^{2} + A^{2}B^{2} + A^{1}C^{2} + A^{2}C^{1} + B^{2}C^{1} + B^{1}C^{2} + B^{2}C^{2} + A^{1}B^{1}C^{1})
 $$
+
 ### Subtrator
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{sub} = B_{0}^{0}[X_{1}^{0}X_{2}^{1} + X_{1}^{2}X_{1}^{1}X_{2}^{2}] + B_{0}^{1}[X_{1}^{0}X_{2}^{0} + X_{1}^{1}X_{2}^{1} + X_{1}^{2}X_{2}^{2}] + B_{0}^{2}[X_{1}^{1}X_{2}^{0} + X_{1}^{0}X_{2}^{2} + X_{1}^{2}X_{2}^{1}] + [B_{0}^{0}(X_{1}^{1}X_{2}^{0} + X_{1}^{2}X_{2}^{1} + X_{1}^{0}X_{2}^{2}) + B_{0}^{1}(X_{1}^{0}X_{2}^{0} + X_{1}^{1}X_{2}^{2}) + B_{0}^{2}(X_{1}^{0}X_{2}^{0} + X_{1}^{1}X_{2}^{1} + X_{1}^{2}X_{2}^{2})]
 $$
+
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{borrow} = B_{0}^{2}[2(X_{1}^{1} + X_{2}^{1})] + 2[X_{1}^{0}X_{2}^{1} + X_{1}^{0}X_{2}^{2}] + 2[X_{1}^{1}X_{2}^{2}] + X_{1}^{2}X_{2}^{2}B_{0}^{1} + X_{1}^{1}X_{2}^{0}B_{0}^{2}
 $$
+
 ### Multiplicador
 <div align="center">
 
@@ -299,26 +365,89 @@ $$
 | 2  | 2  | 2  | 0 | 2 |
 </div>
 
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{sum} = C_{in}^{0}[A_{1}^{2}B_{1}^{0}+A_{1}^{1}B_{1}^{1}+A_{1}^{0}B_{1}^{2}] + C_{in}^{1}[A_{1}^{1}B_{1}^{0}+A_{1}^{0}B_{1}^{1}+A_{1}^{2}B_{1}^{2}] + C_{in}^{2}[A_{1}^{0}B_{1}^{0}+A_{1}^{2}B_{1}^{1}+A_{1}^{1}B_{1}^{2}] + [C_{in}^{0}(A_{1}^{1}B_{1}^{0}+A_{1}^{0}B_{1}^{1}+A_{1}^{2}B_{1}^{2}) + C_{in}^{1}(A_{1}^{0}B_{1}^{0}+A_{1}^{2}B_{1}^{1}+A_{1}^{1}B_{1}^{2}) + C_{in}^{2}(A_{1}^{2}B_{1}^{0}+A_{1}^{1}B_{1}^{1}+A_{1}^{0}B_{1}^{2})]
 $$
+
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 F_{carry} = A_{1}^{2}B_{1}^{2}C_{in}^{2} + [A_{1}^{2}B_{1}^{1}C_{in}^{0} + A_{1}^{2}B_{1}^{2}C_{in}^{0} + A_{1}^{1}B_{1}^{2}C_{in}^{0} + A_{1}^{1}B_{1}^{1}C_{in}^{1}] + 2[(B_{1}^{1}C_{in}^{2} + B_{1}^{2}C_{in}^{2}) + (A_{1}^{1}C_{in}^{2} + A_{1}^{2}C_{in}^{2}) + (A_{1}^{2}C_{in}^{2})]
 $$
+
 ### Divisor
 ### Comparador
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 A = B = (A_{0}^{1}B_{0}^{0} + A_{1}^{1}B_{1}^{1} + A_{1}^{2}B_{1}^{2})(A_{0}^{0}B_{0}^{0} + A_{0}^{2}B_{0}^{2}) + A_{1}^{0}B_{1}^{0}(A_{0}^{1}B_{1}^{0} + A_{1}^{1}B_{1}^{1} + A_{1}^{2}B_{1}^{2})
 $$
 
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 $$
 A < B = A_{0}^{0}A_{1}^{1}B_{1}^{0}B_{1}^{1} + A_{0}^{0}A_{1}^{2}B_{1}^{1}B_{1}^{2} + A_{1}^{1}A_{1}^{1}B_{0}^{2}B_{1}^{1} + 2A_{1}^{0}B_{1}^{1} + 2A_{1}^{0}B_{1}^{2} + 2A_{1}^{1}B_{1}^{2} + 2B_{0}^{2}B_{1}^{2}(A_{0}^{0} + A_{0}^{1}) + A_{0}^{0}A_{1}^{0}B_{1}^{0} + 2A_{0}^{0}B_{0}^{2}(A_{0}^{0} + A_{0}^{1})
 $$
+  
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
 
 $$
 A > B = A_{0}^{2}A_{1}^{1}B_{0}^{0}B_{1}^{1} + A_{1}^{0}A_{1}^{1}B_{0}^{0}B_{1}^{1} + A_{0}^{2}A_{1}^{1}B_{1}^{1} + A_{0}^{2}A_{1}^{2}B_{1}^{0}B_{1}^{0} + A_{0}^{2}A_{1}^{2}B_{1}^{0} + 2B_{0}^{0}B_{1}^{0}(A_{0}^{1} + A_{0}^{2}) + 2A_{1}^{2}B_{0}^{0}(A_{0}^{1} + A_{0}^{2}) + 2A_{1}^{1}B_{1}^{0} + 2A_{1}^{2}B_{1}^{1} + 2A_{1}^{2}B_{1}^{0}
 $$
+
 ### Multiplexador
+<div align="center">
+
+| A/B | 0 | 1 | 2 | \ | 0 | 1 | 2 | \ | 0 | 1 | 2 |
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| 0  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 1  |   |   |   | \ |   |   |   | \ |   |   |   |
+| 2  |   |   |   | \ |   |   |   | \ |   |   |   |
+|C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
+</div>
+
 ### Demultiplexador
 ### Flip-flop
 #### C-Flip-flop

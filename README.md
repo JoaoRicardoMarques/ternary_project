@@ -601,8 +601,20 @@ $$
 
 ### Flip-flop
 #### SR-Flip-flop
+<p align="center">
+  <img src="Images/Circuits/SR-flip-flop.png" width="500">
+</p>
+
 #### D-Flip-flop
+<p align="center">
+  <img src="Images/Circuits/D-flip-flop.png" width="500">
+</p>
+
 #### T-Flip-flop
+<p align="center">
+  <img src="Images/Circuits/T-flip-flop.png" width="500">
+</p>
+
 ## Datapath
 ### Memória de Instruções
 ### Banco de Registradores

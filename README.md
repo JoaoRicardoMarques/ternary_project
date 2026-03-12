@@ -217,6 +217,10 @@ A propriedade de idempotência na lógica ternária estabelece que, ao aplicar u
 
 </div>
 
+<p align="center">
+  <img src="Images/Circuits/decoder.png" width="500">
+</p>
+
 ### Somador
 #### Somador incompleto (Half-Adder)
 <div align="center">
@@ -278,6 +282,10 @@ $$
 $$
 F_{carry} = 0 + 1\cdot(A^{2}B^{1} + A^{1}B^{2} + A^{2}B^{2})
 $$
+
+<p align="center">
+  <img src="Images/Circuits/Half-Adder.png" width="500">
+</p>
 
 #### Somador completo (Full-Adder)
 <div align="center">
@@ -538,6 +546,11 @@ $$
 A > B = A_{0}^{2}A_{1}^{1}B_{0}^{0}B_{1}^{1} + A_{1}^{0}A_{1}^{1}B_{0}^{0}B_{1}^{1} + A_{0}^{2}A_{1}^{1}B_{1}^{1} + A_{0}^{2}A_{1}^{2}B_{1}^{0}B_{1}^{0} + A_{0}^{2}A_{1}^{2}B_{1}^{0} + 2B_{0}^{0}B_{1}^{0}(A_{0}^{1} + A_{0}^{2}) + 2A_{1}^{2}B_{0}^{0}(A_{0}^{1} + A_{0}^{2}) + 2A_{1}^{1}B_{1}^{0} + 2A_{1}^{2}B_{1}^{1} + 2A_{1}^{2}B_{1}^{0}
 $$
 
+
+<p align="center">
+  <img src="Images/Circuits/comparador.png" width="500">
+</p>
+
 ### Multiplexador
 <div align="center">
 
@@ -580,6 +593,11 @@ $$
 | 2  |   |   |   | \ |   |   |   | \ |   |   |   |
 |C|C = 0|C = 0|C = 0| \ |C = 1|C = 1|C = 1| \ |C = 2|C = 2|C = 2|
 </div>
+
+
+<p align="center">
+  <img src="Images/Circuits/multiplexador.png" width="500">
+</p>
 
 ### Flip-flop
 #### SR-Flip-flop
